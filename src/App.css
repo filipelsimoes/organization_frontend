@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -35,4 +34,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.list {
+  padding: 2rem;
+  justify-content: center;
+}
+
+.no-results {
+  /* background-position: center center; */
+  height: 10rem;
+  width: 20rem;
+   display: table-cell; 
+   vertical-align: middle;
+  
+}
+
+.container-no-results {
+  /* background-position: center center; */
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  
 }

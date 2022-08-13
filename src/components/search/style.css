@@ -1,0 +1,32 @@
+.search {
+    padding-bottom: 2rem;
+}
+
+.search-input {
+  /* width: 90%; */
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.search-input-second {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.search-button {
+  padding: 12px 20px;
+  margin-left: 1rem;
+  background-color: #6FA8DC;
+  border: none;
+  cursor: pointer;
+}
