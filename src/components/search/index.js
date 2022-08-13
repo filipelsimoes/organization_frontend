@@ -8,7 +8,7 @@ export function Search({handleSearch, handleSearchWithoutBackend}) {
 
   return (
     <div className='search'>
-      <div>
+      <div style={{width: '100%'}}>
         <p>Search for a organization name or parent using the Backend</p>
         <input type="text" placeholder='Organization name ...' className='search-input' onChange={(event) => setSearchInput(event.target.value)}></input>
         <button onClick={() => handleSearch(searchInput)} className="search-button"><FaSearch color='white' /></button>
