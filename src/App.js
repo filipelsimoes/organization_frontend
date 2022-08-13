@@ -70,7 +70,7 @@ function App() {
   const searchByName = async (name) => {
      try {
       await axios
-        .get(getOrganizationEndpoint + name)
+        .get(getOrganizationEndpoint +  name.charAt(0).toUpperCase() + name.slice(1))
         .then((response) => {
           const indexOfLastRecord = currentPage * 5;
           const indexOfFirstRecord = indexOfLastRecord - 5;
