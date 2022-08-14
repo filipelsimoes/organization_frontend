@@ -7,13 +7,41 @@ import { Pagination } from "./components/Pagination";
 import { Search } from './components/search';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getAllOrganizationsEndpoint, getOrganizationEndpoint, uploadFileEndpoint } from "./endpoints";
+import { createOrganizationEndpoint, getAllOrganizationsEndpoint, getOrganizationEndpoint, uploadFileEndpoint } from "./endpoints";
+import { FaPlusCircle } from 'react-icons/fa';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+
+const styleModal = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 500,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+  border: 0,
+  borderRadius: 5,
+  display: 'flex',
+  flexDirection: 'column'
+};
 
 const axios = require("axios").default;
 
 function App() {
 
-  const notifySuccess = () => toast("Loaded CSV file!", {type: "success"});
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [newOrgnizationName, setNewOrganizationName] = useState('');
+  const [newOrgnizationParent, setNewOrgnizationParent] = useState('');
+
+
+  const notifySuccess = () => toast("Success!", {type: "success"});
   const notifyError = () => toast("Error!", {type: "error"});
 
   const [organizations, setOrganizations] = useState([]);
@@ -67,6 +95,27 @@ function App() {
     }
   }
 
+  const createOrganization = async (name, parent) => {
+    if(name!==""){
+
+    console.log(name, parent);
+     try {
+      await axios
+        .post(createOrganizationEndpoint, null, { params: {
+              name,
+              parent
+          }})
+        .then((response) => {
+          console.log("response ->", response)
+          getAllOrganizations();
+          notifySuccess();
+        });
+    } catch (error) {
+      notifyError();
+    }
+    }
+  }
+
   const searchByName = async (name) => {
      try {
       await axios
@@ -117,7 +166,30 @@ function App() {
        {currentRecords.length !== 0 && 
        <Pagination numberOfPages={numberOfPages} currentPage={currentPage} handlePage={handlePage}/>
       }
-       
+
+      <button onClick={() => handleOpen()} className="modal-button"><FaPlusCircle className="add-icon" /></button>
+       <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleModal}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Add a new organization to the database
+          </Typography>
+          <div className="container-inputs">
+             <label>Name</label>
+          <input  className="inputs" onChange={(event) => setNewOrganizationName(event.target.value)}/>
+          <label>Parent</label>
+          <input className="inputs" onChange={(event) => setNewOrgnizationParent(event.target.value)} />
+          </div>
+          <button onClick={() => {createOrganization(newOrgnizationName, newOrgnizationParent)
+          handleClose()}} className="create-button">Add</button>
+         
+
+        </Box>
+      </Modal>
      </div>
      <ToastContainer 
         position="bottom-center"
