@@ -15,3 +15,6 @@ You can:
   Bonus: Create a new organization
   
   Bonus: Also created other search bar, to do a filter without the backend.
+  
+  First thing after npm start (and put backend running) should be load the csv file. This will import the information to the database.
+  After that you can start using the search's bars.
