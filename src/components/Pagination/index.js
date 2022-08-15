@@ -3,8 +3,6 @@ import './style.css'
 
 export function Pagination({numberOfPages, currentPage, handlePage}) {
 
-  console.log("current page -> ", currentPage);
-
   return (
     <div>
       {currentPage !== 1 && 
