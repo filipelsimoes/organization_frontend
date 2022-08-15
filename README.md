@@ -2,7 +2,7 @@
 
 Frontend project done with React
 
-After cloning the project, dont forget to npm install to install the dependecieas.
+After cloning the project, dont forget to npm install to install the dependecies.
 To start the project, npm start.
 
 In the project you can find a SPA (single page application), using 4 endpoints (Provided in the backend project).
