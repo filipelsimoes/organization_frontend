@@ -81,11 +81,10 @@ function App() {
           'content-type' : 'multipart/form-data'
         }
     }
+    console.log("request upload --")
      try {
       await axios
-        .post(uploadFileEndpoint, formData, config
-        
-        )
+        .post(uploadFileEndpoint, formData, config)
         .then(() => {
           getAllOrganizations();
           notifySuccess();
