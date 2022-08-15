@@ -58,6 +58,10 @@ function App() {
     const indexOfLastRecord = currentPage * 5;
     const indexOfFirstRecord = indexOfLastRecord - 5;
     setCurrentRecords(organizations.slice(indexOfFirstRecord, indexOfLastRecord));
+    setNumberOfPages(Math.ceil(organizations.length/5))
+
+
+   
   }, [currentPage, organizations])
 
   const getAllOrganizations = async () => {
@@ -75,13 +79,13 @@ function App() {
 
   const uploadFile = async (file) => {
     const formData = new FormData();
+
     formData.append('file', file);
     let config = {
         header : {
           'content-type' : 'multipart/form-data'
         }
     }
-    console.log("request upload --")
      try {
       await axios
         .post(uploadFileEndpoint, formData, config)
@@ -97,7 +101,6 @@ function App() {
   const createOrganization = async (name, parent) => {
     if(name!==""){
 
-    console.log(name, parent);
      try {
       await axios
         .post(createOrganizationEndpoint, null, { params: {
@@ -105,7 +108,6 @@ function App() {
               parent
           }})
         .then((response) => {
-          console.log("response ->", response)
           getAllOrganizations();
           notifySuccess();
         });
@@ -116,12 +118,16 @@ function App() {
   }
 
   const searchByName = async (name) => {
+    if(name === ""){
+      getAllOrganizations();
+    }
      try {
       await axios
         .get(getOrganizationEndpoint +  name.charAt(0).toUpperCase() + name.slice(1))
         .then((response) => {
           const indexOfLastRecord = currentPage * 5;
           const indexOfFirstRecord = indexOfLastRecord - 5;
+          setOrganizations(response.data)
           setCurrentRecords(response.data.slice(indexOfFirstRecord, indexOfLastRecord));
           setNumberOfPages(Math.ceil(response.data.length/5))
         });
@@ -138,7 +144,6 @@ function App() {
       }
     });
     setNumberOfPages(Math.ceil(aux.length/5));
-    console.log("number of Pages -> ", numberOfPages);
     setCurrentRecords(aux);
     if(name === ""){
       const indexOfLastRecord = currentPage * 5;

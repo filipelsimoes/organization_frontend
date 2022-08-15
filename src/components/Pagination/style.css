@@ -8,4 +8,19 @@
     margin: 0.5rem;
     border-radius: 10px;
    cursor: pointer;
+
+}
+
+.button-pagination-selected {
+    background-color: #6FA8DC;
+    color: white;
+
+    border: 1.5px solid black;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.5rem;
+    border-radius: 10px;
+   cursor: pointer;
+
 }

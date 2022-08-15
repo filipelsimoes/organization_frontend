@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 
 export function Search({handleSearch, handleSearchWithoutBackend}) {
 
-  const [searchInput, setSearchInput] = useState();
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <div className='search'>
