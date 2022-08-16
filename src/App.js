@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 import {useEffect, useState} from "react"
 import './App.css';
 import { Header } from './components/header';
@@ -107,7 +106,7 @@ function App() {
               name,
               parent
           }})
-        .then((response) => {
+        .then(() => {
           getAllOrganizations();
           notifySuccess();
         });
@@ -137,14 +136,10 @@ function App() {
   }
 
   const searchByNameWithoutBackend = (name) => {
-    let aux = [];
-    organizations.filter(organization => { 
-      if(organization.name.toLowerCase().includes(name)){
-        aux.push(organization);
-      }
-    });
-    setNumberOfPages(Math.ceil(aux.length/5));
-    setCurrentRecords(aux);
+   setCurrentRecords(organizations.filter(organization => 
+    organization.name.toLowerCase().includes(name)
+    ));
+    setNumberOfPages(Math.ceil(currentRecords.length/5));
     if(name === ""){
       const indexOfLastRecord = currentPage * 5;
       const indexOfFirstRecord = indexOfLastRecord - 5;
