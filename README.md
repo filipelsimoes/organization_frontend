@@ -1,5 +1,3 @@
-#Frontend Project pipedrive
-
 Frontend project done with React
 
 After cloning the project, dont forget to npm install to install the dependecies.
